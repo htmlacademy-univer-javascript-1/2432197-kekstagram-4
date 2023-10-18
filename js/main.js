@@ -25,7 +25,7 @@ const getRandomInteger = function (min, max) {
 const getRandomElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const createComment = () => ({
-  id: getCommentID,
+  id: getCommentID(),
   avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
   message: getRandomElement(COMMENTS),
   name: getRandomElement(NAMES)
@@ -33,7 +33,7 @@ const createComment = () => ({
 
 const createPhoto = (id) => ({
   id: id,
-  url: `photos/${getRandomInteger(1, 25)}.jpg`,
+  url: `photos/${id}.jpg`,
   description: getRandomElement(DESCRIPTIONS),
   likes: getRandomInteger(15, 200),
   comments: Array.from({ length: getRandomInteger(0, 30) }, () => createComment())
