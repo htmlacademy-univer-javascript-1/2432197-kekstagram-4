@@ -42,3 +42,27 @@ extractNumber('agent 007');
 extractNumber('где помидор???');
 extractNumber(-2023.10);
 
+// → 5.16 ←
+const checkCompatibility = function(startWorking, endWorking, startMeeting, durationMeeting) {
+  const parseTime = (time) => time.split(':').map((part) => parseInt(part, 10));
+
+  const [startHours, startMinutes] = parseTime(startWorking);
+  const [endHours, endMinutes] = parseTime(endWorking);
+  const [meetingHours, meetingMinutes] = parseTime(startMeeting);
+
+  const startMeetingMinutes = meetingHours * 60 + meetingMinutes;
+  const endMeetingMinutes = startMeetingMinutes + durationMeeting;
+
+  if (endMeetingMinutes <= endHours * 60 + endMinutes && startMeetingMinutes >= startHours * 60 + startMinutes) {
+    return true; // не выходит за рамки рабочего дня
+  }
+  else {
+    return false; // выходит за рамки рабочего дня
+  }
+};
+
+checkCompatibility('08:00', '17:30', '14:00', 90); // true
+checkCompatibility('8:0', '10:0', '8:0', 120);     // true
+checkCompatibility('08:00', '14:30', '14:00', 90); // false
+checkCompatibility('14:00', '17:30', '08:0', 90);  // false
+checkCompatibility('8:00', '17:30', '08:00', 900); // false
