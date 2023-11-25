@@ -1,4 +1,8 @@
 import { getPhotos } from './modules/create-photo.js';
 import { drawThumbnail } from './modules/draw-thumbnail.js';
+import { addEventListenerToPicture } from './modules/open-big-picture.js';
 
-drawThumbnail(getPhotos());
+const photos = getPhotos();
+
+drawThumbnail(photos);
+addEventListenerToPicture(photos);
