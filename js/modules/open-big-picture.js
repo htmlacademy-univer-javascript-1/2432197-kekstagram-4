@@ -5,13 +5,16 @@ const image = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
 const commentsCount = bigPicture.querySelector('.comments-count');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
-const desciption = bigPicture.querySelector('.social__caption');
+const socialCaption = bigPicture.querySelector('.social__caption');
 
 const cancelButton = bigPicture.querySelector('.big-picture__cancel');
 
 const comment = document.querySelector('.social__comment');
 const commentsList = document.querySelector('.social__comments');
 const commentsCountBlock = bigPicture.querySelector('.social__comment-count');
+
+commentsLoader.classList.remove('hidden');
+commentsCountBlock.classList.remove('hidden');
 
 const createComment = (commentInfo) => {
   const newComment = comment.cloneNode(true);
@@ -25,21 +28,44 @@ const createComment = (commentInfo) => {
 
 const createComments = (commentsInfo) => {
   commentsList.innerHTML = '';
-
   const fragment = document.createDocumentFragment();
 
-  commentsInfo.forEach((commentInfo) => {
-    fragment.append(createComment(commentInfo));
-  });
+  let currentIndex = 0;
+  const commentsPerPage = 5;
+
+  while (currentIndex < commentsPerPage && currentIndex < commentsInfo.length) {
+    fragment.append(createComment(commentsInfo[currentIndex]));
+    currentIndex++;
+  }
 
   commentsList.append(fragment);
+
+  if (currentIndex < commentsInfo.length) {
+    commentsLoader.classList.remove('hidden');
+    commentsLoader.addEventListener('click', () => {
+      for (let i = 0; i < commentsPerPage && currentIndex < commentsInfo.length; i++) {
+        fragment.append(createComment(commentsInfo[currentIndex]));
+        currentIndex++;
+      }
+
+      commentsList.append(fragment);
+      commentsCountBlock.textContent = `${currentIndex} из ${commentsInfo.length} комментариев`;
+
+      if (currentIndex === commentsInfo.length) {
+        commentsLoader.classList.add('hidden');
+      }
+    });
+  }
+  else {
+    commentsLoader.classList.add('hidden');
+  }
 };
 
 const getPictureDetails = (pictureInfo) => {
   image.src = pictureInfo.url;
   likesCount.textContent = pictureInfo.likes;
   commentsCount.textContent = pictureInfo.comments.length;
-  desciption.textContent = pictureInfo.description;
+  socialCaption.textContent = pictureInfo.description;
 
   createComments(pictureInfo.comments);
 };
@@ -74,7 +100,7 @@ const addEventListenerToPicture = (picturesInfo) => {
   }
 
   cancelButton.addEventListener('click', hideBigPicture);
-  document.addEventListener('click', escapeKeydown);
+  document.addEventListener('keydown', escapeKeydown);
 };
 
 export { addEventListenerToPicture };

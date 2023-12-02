@@ -1,7 +1,7 @@
 import { NAMES, COMMENTS, DESCRIPTIONS } from './const.js';
 import { getRandomInteger, getRandomElement } from './util.js';
 
-const getID = function () {
+const getID = () => {
   let id = 0;
 
   return function () {
@@ -10,8 +10,8 @@ const getID = function () {
   };
 };
 
-const getCommentID = getID();
 const getPhotoID = getID();
+const getCommentID = getID();
 
 const createComment = () => ({
   id: getCommentID(),
