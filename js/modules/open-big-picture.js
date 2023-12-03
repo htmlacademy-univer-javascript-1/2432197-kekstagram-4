@@ -13,9 +13,6 @@ const comment = document.querySelector('.social__comment');
 const commentsList = document.querySelector('.social__comments');
 const commentsCountBlock = bigPicture.querySelector('.social__comment-count');
 
-commentsLoader.classList.remove('hidden');
-commentsCountBlock.classList.remove('hidden');
-
 const createComment = (commentInfo) => {
   const newComment = comment.cloneNode(true);
 
@@ -42,6 +39,8 @@ const createComments = (commentsInfo) => {
 
   if (currentIndex < commentsInfo.length) {
     commentsLoader.classList.remove('hidden');
+    commentsCountBlock.classList.remove('hidden');
+
     commentsLoader.addEventListener('click', () => {
       for (let i = 0; i < commentsPerPage && currentIndex < commentsInfo.length; i++) {
         fragment.append(createComment(commentsInfo[currentIndex]));
@@ -49,16 +48,19 @@ const createComments = (commentsInfo) => {
       }
 
       commentsList.append(fragment);
+
       commentsCountBlock.textContent = `${currentIndex} из ${commentsInfo.length} комментариев`;
 
       if (currentIndex === commentsInfo.length) {
         commentsLoader.classList.add('hidden');
       }
     });
-  }
-  else {
+  } else {
     commentsLoader.classList.add('hidden');
+    commentsCountBlock.classList.remove('hidden');
   }
+
+  commentsCountBlock.textContent = `${currentIndex} из ${commentsInfo.length} комментариев`;
 };
 
 const getPictureDetails = (pictureInfo) => {
