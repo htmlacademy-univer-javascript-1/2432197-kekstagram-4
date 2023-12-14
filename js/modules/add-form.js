@@ -1,4 +1,6 @@
 import { VALID_SYMBOLS, TEXT_ERROR } from './const.js';
+import { resetScale } from './scale-image.js';
+import { resetEffects } from './change-effects.js';
 
 const body = document.querySelector('body');
 
@@ -38,6 +40,8 @@ const hideImageModal = () => {
 
   uploadForm.reset();
   pristine.reset();
+  resetScale();
+  resetEffects();
   closeOverlayButton.removeEventListener('click', hideImageModal);
 };
 
