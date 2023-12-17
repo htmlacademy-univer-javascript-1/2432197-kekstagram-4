@@ -9,6 +9,23 @@ const TEXT_ERROR = {
   MAX_COUNT: 'Возможно максимум 5 хэштегов'
 };
 
+const URL = 'https://29.javascript.pages.academy/kekstagram';
+
+const ROUTE = {
+  GET_DATA: '/data',
+  SEND_DATA: '/'
+};
+
+const METHOD = {
+  GET: 'GET',
+  POST: 'POST'
+};
+
+const TEXT_SERVER_ERROR = {
+  GET_DATA: 'не загрузилось',
+  POST_DATA: 'не отправилось'
+};
+
 const EFFECTS = [
   {
     name: 'none',
@@ -60,4 +77,4 @@ const EFFECTS = [
   }
 ];
 
-export { NAMES, COMMENTS, DESCRIPTIONS, VALID_SYMBOLS, TEXT_ERROR, EFFECTS };
+export { NAMES, COMMENTS, DESCRIPTIONS, VALID_SYMBOLS, TEXT_ERROR, URL, ROUTE, METHOD, TEXT_SERVER_ERROR, EFFECTS };
