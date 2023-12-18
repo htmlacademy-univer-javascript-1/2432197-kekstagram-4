@@ -10,6 +10,8 @@ const uploadFile = uploadForm.querySelector('#upload-file');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const closeOverlayButton = uploadForm.querySelector('#upload-cancel');
 
+const imagePreview = document.querySelector('.img-upload__preview img');
+
 const hashtagsField = uploadForm.querySelector('.text__hashtags');
 const descriptionField = uploadForm.querySelector('.text__description');
 
@@ -31,7 +33,7 @@ const isHashtagValid = (hashtags) => getSplitHashtags(hashtags).every((hashtag) 
 const hasReachedHashtagLimit = (hashtags) => getSplitHashtags(hashtags).length <= 5;
 
 pristine.addValidator(hashtagsField, areHashtagsUnique, TEXT_ERROR.NOT_UNIQUE, 1, true);
-pristine.addValidator(hashtagsField, isHashtagValid, TEXT_ERROR.NOT_VALID, 2, true);
+pristine.addValidator(hashtagsField, isHashtagValid, TEXT_ERROR.NOT_VALID, 3, true);
 pristine.addValidator(hashtagsField, hasReachedHashtagLimit, TEXT_ERROR.MAX_COUNT, 2, true);
 
 const hideImageModal = () => {
@@ -64,6 +66,14 @@ const showImageModal = () => {
 uploadForm.addEventListener('submit', () => { });
 uploadFile.addEventListener('input', showImageModal);
 
+uploadFile.addEventListener('change', (evt) => {
+  const file = evt.target.files[0];
+
+  if (file) {
+    imagePreview.src = URL.createObjectURL(file);
+  }
+});
+
 hashtagsField.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
     evt.stopPropagation();
@@ -75,3 +85,15 @@ descriptionField.addEventListener('keydown', (evt) => {
     evt.stopPropagation();
   }
 });
+
+const setOnFormDataSubmit = (callback) => {
+  uploadForm.addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+
+    if (pristine.validate()) {
+      await callback(new FormData(uploadForm));
+    }
+  });
+};
+
+export { hideImageModal, setOnFormDataSubmit };
