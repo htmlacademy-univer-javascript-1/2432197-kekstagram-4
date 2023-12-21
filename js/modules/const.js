@@ -34,7 +34,7 @@ const EFFECTS = {
     min: 0,
     max: 100,
     step: 1,
-    unit: '',
+    unit: ''
   },
   CHROME: {
     name: 'chrome',
@@ -42,7 +42,7 @@ const EFFECTS = {
     min: 0,
     max: 1,
     step: 0.1,
-    unit: '',
+    unit: ''
   },
   SEPIA: {
     name: 'sepia',
@@ -50,7 +50,7 @@ const EFFECTS = {
     min: 0,
     max: 1,
     step: 0.1,
-    unit: '',
+    unit: ''
   },
   MARVIN: {
     name: 'marvin',
@@ -58,7 +58,7 @@ const EFFECTS = {
     min: 0,
     max: 100,
     step: 1,
-    unit: '%',
+    unit: '%'
   },
   PHOBOS: {
     name: 'phobos',
@@ -66,7 +66,7 @@ const EFFECTS = {
     min: 0,
     max: 3,
     step: 0.1,
-    unit: 'px',
+    unit: 'px'
   },
   HEAT: {
     name: 'heat',
@@ -74,7 +74,7 @@ const EFFECTS = {
     min: 1,
     max: 3,
     step: 0.1,
-    unit: '',
+    unit: ''
   }
 };
 
