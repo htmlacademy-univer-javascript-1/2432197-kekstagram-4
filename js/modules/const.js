@@ -1,8 +1,9 @@
 const NAMES = ['Jack', 'Artyom9422', 'Keks', 'max', 'Cat15', 'Alice', 'Tom', 'Happy', 'epic5', 'Joe'];
-const COMMENTS = ['Great', 'cool', '...', 'beautiful!', 'кайф', 'лайк', 'good', ':)', 'первый', 'top'];
-const DESCRIPTIONS = ['Chocolate cake', 'Im at sea', 'Funny cat', 'Beautiful sky', 'Snowy January', 'Have a nice day!', 'in GTA 5', 'I hate this Monday', 'hahaha', 'im bored :('];
+const COMMENTS = ['Great', 'cool', 'beautiful!', 'кайф', 'лайк', 'good', ':)', ':o', 'Very beautiful photo, well done!', 'Have a nice day, thank you for delighting us with photos so often!!!'];
+const DESCRIPTIONS = ['Im at sea #sea #vacation', 'My funny cat xD #funnycat #cat', 'Beautiful sky #sky #beaty', 'Sunny August #summer #fun', 'Have a nice day!', 'Its almost like GTA 5 #game #real', 'Boring Monday :( #boring', 'Delicious morning #morning #food #relaxation', 'Looking forward to GTA 6 :D #gta6 #2025', 'Sounds of the Night #concert #music'];
 
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+
 const TEXT_ERROR = {
   NOT_UNIQUE: 'Хэштеги не должны повторяться',
   NOT_VALID: 'Хэштег должен начинаться с знака # и состоять из букв или цифр',
@@ -26,55 +27,61 @@ const TEXT_SERVER_ERROR = {
   POST_DATA: 'не отправилось'
 };
 
-const EFFECTS = [
-  {
+const EFFECTS = {
+  NONE: {
     name: 'none',
     style: 'none',
     min: 0,
     max: 100,
     step: 1,
-    unit: ''
+    unit: '',
   },
-  {
+  CHROME: {
     name: 'chrome',
     style: 'grayscale',
     min: 0,
     max: 1,
     step: 0.1,
-    unit: ''
+    unit: '',
   },
-  {
+  SEPIA: {
     name: 'sepia',
     style: 'sepia',
     min: 0,
     max: 1,
     step: 0.1,
-    unit: ''
+    unit: '',
   },
-  {
+  MARVIN: {
     name: 'marvin',
     style: 'invert',
     min: 0,
     max: 100,
     step: 1,
-    unit: '%'
+    unit: '%',
   },
-  {
+  PHOBOS: {
     name: 'phobos',
     style: 'blur',
     min: 0,
     max: 3,
     step: 0.1,
-    unit: 'px'
+    unit: 'px',
   },
-  {
+  HEAT: {
     name: 'heat',
     style: 'brightness',
     min: 1,
     max: 3,
     step: 0.1,
-    unit: ''
+    unit: '',
   }
-];
+};
 
-export { NAMES, COMMENTS, DESCRIPTIONS, VALID_SYMBOLS, TEXT_ERROR, URL, ROUTE, METHOD, TEXT_SERVER_ERROR, EFFECTS };
+const FILTERS = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed',
+};
+
+export { NAMES, COMMENTS, DESCRIPTIONS, VALID_SYMBOLS, TEXT_ERROR, URL, ROUTE, METHOD, TEXT_SERVER_ERROR, EFFECTS, FILTERS };

@@ -1,8 +1,12 @@
-const image = document.querySelector('.img-upload__preview img');
+const uploadModal = document.querySelector('.img-upload');
 
-const smallerScaleButton = document.querySelector('.scale__control--smaller');
-const biggerScaleButton = document.querySelector('.scale__control--bigger');
-const scaleValue = document.querySelector('.scale__control--value');
+const image = uploadModal.querySelector('.img-upload__preview img');
+
+const smallerScaleButton = uploadModal.querySelector('.scale__control--smaller');
+const biggerScaleButton = uploadModal.querySelector('.scale__control--bigger');
+const scaleValue = uploadModal.querySelector('.scale__control--value');
+
+scaleValue.value = `${100}%`;
 
 const rescaleImage = (currentValue) => {
   image.style.transform = `scale(${currentValue / 100})`;
