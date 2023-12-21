@@ -1,6 +1,6 @@
 const NAMES = ['Jack', 'Artyom9422', 'Keks', 'max', 'Cat15', 'Alice', 'Tom', 'Happy', 'epic5', 'Joe'];
-const COMMENTS = ['Great', 'cool', 'beautiful!', 'кайф', 'лайк', 'good', ':)', ':o', 'Very beautiful photo, well done!', 'Have a nice day, thank you for delighting us with photos so often!!!'];
-const DESCRIPTIONS = ['Im at sea #sea #vacation', 'My funny cat xD #funnycat #cat', 'Beautiful sky #sky #beaty', 'Sunny August #summer #fun', 'Have a nice day!', 'Its almost like GTA 5 #game #real', 'Boring Monday :( #boring', 'Delicious morning #morning #food #relaxation', 'Looking forward to GTA 6 :D #gta6 #2025', 'Sounds of the Night #concert #music'];
+const COMMENTS = ['Great', 'cool', '...', 'beautiful!', 'кайф', 'лайк', 'good', ':)', 'первый', 'top'];
+const DESCRIPTIONS = ['Chocolate cake', 'Im at sea', 'Funny cat', 'Beautiful sky', 'Snowy January', 'Have a nice day!', 'in GTA 5', 'I hate this Monday', 'hahaha', 'im bored :('];
 
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 
