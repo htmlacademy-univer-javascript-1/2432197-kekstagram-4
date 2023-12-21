@@ -34,7 +34,7 @@ const hasReachedHashtagLimit = (hashtags) => getSplitHashtags(hashtags).length <
 
 pristine.addValidator(hashtagsField, areHashtagsUnique, TEXT_ERROR.NOT_UNIQUE, 1, true);
 pristine.addValidator(hashtagsField, isHashtagValid, TEXT_ERROR.NOT_VALID, 3, true);
-pristine.addValidator(hashtagsField, hasReachedHashtagLimit, TEXT_ERROR.REACHED_MAX_COUNT, 2, true);
+pristine.addValidator(hashtagsField, hasReachedHashtagLimit, TEXT_ERROR.MAX_COUNT, 2, true);
 
 const hideImageModal = () => {
   uploadOverlay.classList.add('hidden');
