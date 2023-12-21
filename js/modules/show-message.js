@@ -19,8 +19,8 @@ const hideErrorOnMouseClick = (evt) => {
 
 const showErrorMessage = () => {
   const message = errorMessage.cloneNode(true);
-
   message.querySelector('.error__button').addEventListener('click', hideErrorMessage);
+
   document.addEventListener('keydown', onEscapeError);
   document.addEventListener('click', hideErrorOnMouseClick);
 
@@ -47,8 +47,8 @@ const successOnMouseClick = (evt) => {
 
 const showSuccessMessage = () => {
   const message = successMessage.cloneNode(true);
-
   message.querySelector('.success__button').addEventListener('click', hideSuccessMessage);
+
   document.addEventListener('keydown', onEscapeSuccess);
   document.addEventListener('click', successOnMouseClick);
 

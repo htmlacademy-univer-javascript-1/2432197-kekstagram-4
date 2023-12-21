@@ -10,14 +10,14 @@ const uploadFile = uploadForm.querySelector('#upload-file');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const closeOverlayButton = uploadForm.querySelector('#upload-cancel');
 
-const imagePreview = document.querySelector('.img-upload__preview img');
-
 const hashtagsField = uploadForm.querySelector('.text__hashtags');
 const descriptionField = uploadForm.querySelector('.text__description');
 
+const imagePreview = document.querySelector('.img-upload__preview img');
+
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper'
+  errorTextParent: 'img-upload__field-wrapper',
 });
 
 const getSplitHashtags = (hashtags) => hashtags.trim().split(' ').filter((hashtag) => hashtag.trim().length);
@@ -42,8 +42,6 @@ const hideImageModal = () => {
 
   uploadForm.reset();
   pristine.reset();
-  resetScale();
-  resetEffects();
   closeOverlayButton.removeEventListener('click', hideImageModal);
 };
 
@@ -59,11 +57,13 @@ const showImageModal = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
 
+  resetScale();
+  resetEffects();
+
   document.addEventListener('keydown', documentOnKeyDown);
   closeOverlayButton.addEventListener('click', hideImageModal);
 };
 
-uploadForm.addEventListener('submit', () => { });
 uploadFile.addEventListener('input', showImageModal);
 
 uploadFile.addEventListener('change', (evt) => {

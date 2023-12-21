@@ -1,3 +1,5 @@
+import { openBigPicture } from './open-big-picture.js';
+
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const thumbnails = document.querySelector('.pictures');
 
@@ -13,7 +15,17 @@ const getThumbnail = (pictureInfo) => {
   return picture;
 };
 
+const removePictures = () => {
+  const pictureElements = thumbnails.querySelectorAll('.picture');
+
+  pictureElements.forEach((picture) => {
+    picture.remove();
+  });
+};
+
 const drawThumbnail = (picturesInfo) => {
+  removePictures();
+
   const documentFragment = document.createDocumentFragment();
 
   for (const pictureInfo of picturesInfo) {
@@ -22,6 +34,7 @@ const drawThumbnail = (picturesInfo) => {
   }
 
   thumbnails.appendChild(documentFragment);
+  openBigPicture(picturesInfo);
 };
 
 export { drawThumbnail };

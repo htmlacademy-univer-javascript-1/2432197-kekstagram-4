@@ -1,9 +1,9 @@
-import { getPhotos } from './modules/create-photo.js';
 import { drawThumbnail } from './modules/draw-thumbnail.js';
-import { addEventListenerToPicture } from './modules/open-big-picture.js';
 import { hideImageModal, setOnFormDataSubmit } from './modules/add-form.js';
 import { showSuccessMessage, showErrorMessage } from './modules/show-message.js';
-import { sendData } from './modules/api.js';
+import { getData, sendData } from './modules/api.js';
+import { showFilterButtons } from './modules/add-filters.js';
+import { debounce } from './modules/util.js';
 
 setOnFormDataSubmit(async (data) => {
   try {
@@ -15,7 +15,7 @@ setOnFormDataSubmit(async (data) => {
   }
 });
 
-const photos = getPhotos();
-
-drawThumbnail(photos);
-addEventListenerToPicture(photos);
+getData().then((pictures) => {
+  drawThumbnail(pictures);
+  showFilterButtons(pictures, debounce(drawThumbnail));
+});

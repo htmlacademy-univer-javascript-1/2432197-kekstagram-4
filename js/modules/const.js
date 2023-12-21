@@ -3,6 +3,7 @@ const COMMENTS = ['Great', 'cool', '...', 'beautiful!', 'кайф', 'лайк', 
 const DESCRIPTIONS = ['Chocolate cake', 'Im at sea', 'Funny cat', 'Beautiful sky', 'Snowy January', 'Have a nice day!', 'in GTA 5', 'I hate this Monday', 'hahaha', 'im bored :('];
 
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+
 const TEXT_ERROR = {
   NOT_UNIQUE: 'Хэштеги не должны повторяться',
   NOT_VALID: 'Хэштег должен начинаться с знака # и состоять из букв или цифр',
@@ -26,8 +27,8 @@ const TEXT_SERVER_ERROR = {
   POST_DATA: 'не отправилось'
 };
 
-const EFFECTS = [
-  {
+const EFFECTS = {
+  NONE: {
     name: 'none',
     style: 'none',
     min: 0,
@@ -35,7 +36,7 @@ const EFFECTS = [
     step: 1,
     unit: ''
   },
-  {
+  CHROME: {
     name: 'chrome',
     style: 'grayscale',
     min: 0,
@@ -43,7 +44,7 @@ const EFFECTS = [
     step: 0.1,
     unit: ''
   },
-  {
+  SEPIA: {
     name: 'sepia',
     style: 'sepia',
     min: 0,
@@ -51,7 +52,7 @@ const EFFECTS = [
     step: 0.1,
     unit: ''
   },
-  {
+  MARVIN: {
     name: 'marvin',
     style: 'invert',
     min: 0,
@@ -59,7 +60,7 @@ const EFFECTS = [
     step: 1,
     unit: '%'
   },
-  {
+  PHOBOS: {
     name: 'phobos',
     style: 'blur',
     min: 0,
@@ -67,7 +68,7 @@ const EFFECTS = [
     step: 0.1,
     unit: 'px'
   },
-  {
+  HEAT: {
     name: 'heat',
     style: 'brightness',
     min: 1,
@@ -75,6 +76,12 @@ const EFFECTS = [
     step: 0.1,
     unit: ''
   }
-];
+};
 
-export { NAMES, COMMENTS, DESCRIPTIONS, VALID_SYMBOLS, TEXT_ERROR, URL, ROUTE, METHOD, TEXT_SERVER_ERROR, EFFECTS };
+const FILTERS = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed',
+};
+
+export { NAMES, COMMENTS, DESCRIPTIONS, VALID_SYMBOLS, TEXT_ERROR, URL, ROUTE, METHOD, TEXT_SERVER_ERROR, EFFECTS, FILTERS };
