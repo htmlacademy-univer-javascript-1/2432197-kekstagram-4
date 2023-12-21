@@ -19,3 +19,5 @@ getData().then((pictures) => {
   drawThumbnail(pictures);
   showFilterButtons(pictures, debounce(drawThumbnail));
 });
+
+// 12.13. Фото на память - сделано ♫
