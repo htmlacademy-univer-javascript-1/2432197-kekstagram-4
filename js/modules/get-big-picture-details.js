@@ -1,3 +1,5 @@
+import { LOADED_COMMENTS_NUM } from './const.js';
+
 const bigPicture = document.querySelector('.big-picture');
 
 const image = bigPicture.querySelector('.big-picture__img img');
@@ -10,7 +12,7 @@ const comment = document.querySelector('.social__comment');
 const commentsList = document.querySelector('.social__comments');
 const commentsCountBlock = bigPicture.querySelector('.social__comment-count');
 
-let shownCommentsCount = 5;
+let shownCommentsCount = LOADED_COMMENTS_NUM;
 let openedPicture;
 
 const createComment = (commentInfo) => {
@@ -61,7 +63,7 @@ const createComments = () => {
 
 const getBigPictureDetails = (picture) => {
   openedPicture = picture;
-  shownCommentsCount = 5;
+  shownCommentsCount = LOADED_COMMENTS_NUM;
 
   commentsLoader.addEventListener('click', showMoreComments);
 
@@ -74,7 +76,7 @@ const getBigPictureDetails = (picture) => {
 };
 
 function showMoreComments() {
-  shownCommentsCount += 5;
+  shownCommentsCount += LOADED_COMMENTS_NUM;
   createComments();
 }
 

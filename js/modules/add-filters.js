@@ -1,4 +1,4 @@
-import { FILTERS } from './const.js';
+import { FILTERS, RANDOM_PICTURES_NUM } from './const.js';
 
 const imageFilters = document.querySelector('.img-filters');
 
@@ -16,7 +16,7 @@ const filterByComments = (firstImage, secondImage) => secondImage.comments.lengt
 const getFilteredPictures = () => {
   switch (currentFilter) {
     case FILTERS.RANDOM:
-      return [...pictures].sort(randomFilter).slice(0, 10);
+      return [...pictures].sort(randomFilter).slice(0, RANDOM_PICTURES_NUM);
     case FILTERS.DISCUSSED:
       return [...pictures].sort(filterByComments);
     default:
