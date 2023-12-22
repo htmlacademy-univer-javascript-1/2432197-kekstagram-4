@@ -1,4 +1,4 @@
-import { VALID_SYMBOLS, TEXT_ERROR } from './const.js';
+import { VALID_SYMBOLS, ErrorText, HASHTAG_MAX_NUM, FILE_TYPES } from './const.js';
 import { resetScale } from './scale-image.js';
 import { resetEffects } from './change-effects.js';
 
@@ -10,10 +10,11 @@ const uploadFile = uploadForm.querySelector('#upload-file');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const closeOverlayButton = uploadForm.querySelector('#upload-cancel');
 
+const imagePreview = document.querySelector('.img-upload__preview img');
+const effectsPreview = document.querySelectorAll('.effects__preview');
+
 const hashtagsField = uploadForm.querySelector('.text__hashtags');
 const descriptionField = uploadForm.querySelector('.text__description');
-
-const imagePreview = document.querySelector('.img-upload__preview img');
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -30,11 +31,11 @@ const areHashtagsUnique = (hashtags) => {
 
 const isHashtagValid = (hashtags) => getSplitHashtags(hashtags).every((hashtag) => VALID_SYMBOLS.test(hashtag));
 
-const hasReachedHashtagLimit = (hashtags) => getSplitHashtags(hashtags).length <= 5;
+const hasReachedHashtagLimit = (hashtags) => getSplitHashtags(hashtags).length <= HASHTAG_MAX_NUM;
 
-pristine.addValidator(hashtagsField, areHashtagsUnique, TEXT_ERROR.NOT_UNIQUE, 1, true);
-pristine.addValidator(hashtagsField, isHashtagValid, TEXT_ERROR.NOT_VALID, 3, true);
-pristine.addValidator(hashtagsField, hasReachedHashtagLimit, TEXT_ERROR.MAX_COUNT, 2, true);
+pristine.addValidator(hashtagsField, areHashtagsUnique, ErrorText.NOT_UNIQUE, 1, true);
+pristine.addValidator(hashtagsField, isHashtagValid, ErrorText.NOT_VALID, 3, true);
+pristine.addValidator(hashtagsField, hasReachedHashtagLimit, ErrorText.MAX_COUNT, 2, true);
 
 const hideImageModal = () => {
   uploadOverlay.classList.add('hidden');
@@ -64,15 +65,27 @@ const showImageModal = () => {
   closeOverlayButton.addEventListener('click', hideImageModal);
 };
 
-uploadFile.addEventListener('input', showImageModal);
+const showImage = () => {
+  const file = uploadFile.files[0];
+  const fileName = file.name.toLowerCase();
+  const isValidType = FILE_TYPES.some((fileType) => fileName.endsWith(fileType));
 
-uploadFile.addEventListener('change', (evt) => {
-  const file = evt.target.files[0];
+  if (file && isValidType) {
+    const imageUrl = URL.createObjectURL(file);
+    imagePreview.src = imageUrl;
 
-  if (file) {
-    imagePreview.src = URL.createObjectURL(file);
+    effectsPreview.forEach((effectPreview) => {
+      effectPreview.style.backgroundImage = `url('${imageUrl}')`;
+    });
   }
-});
+};
+
+const uploadImage = (evt) => {
+  showImage(evt);
+  showImageModal();
+};
+
+uploadFile.addEventListener('change', uploadImage);
 
 hashtagsField.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {

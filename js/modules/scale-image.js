@@ -1,3 +1,5 @@
+import { STEP_SCALE, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE } from './const.js';
+
 const uploadModal = document.querySelector('.img-upload');
 
 const image = uploadModal.querySelector('.img-upload__preview img');
@@ -6,7 +8,7 @@ const smallerScaleButton = uploadModal.querySelector('.scale__control--smaller')
 const biggerScaleButton = uploadModal.querySelector('.scale__control--bigger');
 const scaleValue = uploadModal.querySelector('.scale__control--value');
 
-scaleValue.value = `${100}%`;
+scaleValue.value = `${DEFAULT_SCALE}%`;
 
 const rescaleImage = (currentValue) => {
   image.style.transform = `scale(${currentValue / 100})`;
@@ -15,10 +17,10 @@ const rescaleImage = (currentValue) => {
 
 const smallerScaleButtonClick = () => {
   const currentValue = parseInt(scaleValue.value, 10);
-  let newValue = currentValue - 25;
+  let newValue = currentValue - STEP_SCALE;
 
-  if (newValue < 25) {
-    newValue = 25;
+  if (newValue < MIN_SCALE) {
+    newValue = MIN_SCALE;
   }
 
   rescaleImage(newValue);
@@ -26,10 +28,10 @@ const smallerScaleButtonClick = () => {
 
 const biggerScaleButtonClick = () => {
   const currentValue = parseInt(scaleValue.value, 10);
-  let newValue = currentValue + 25;
+  let newValue = currentValue + STEP_SCALE;
 
-  if (newValue > 100) {
-    newValue = 100;
+  if (newValue > MAX_SCALE) {
+    newValue = MAX_SCALE;
   }
 
   rescaleImage(newValue);
@@ -38,6 +40,6 @@ const biggerScaleButtonClick = () => {
 smallerScaleButton.addEventListener('click', smallerScaleButtonClick);
 biggerScaleButton.addEventListener('click', biggerScaleButtonClick);
 
-const resetScale = () => rescaleImage(100);
+const resetScale = () => rescaleImage(DEFAULT_SCALE);
 
 export { resetScale };

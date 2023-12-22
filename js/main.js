@@ -11,6 +11,7 @@ setOnFormDataSubmit(async (data) => {
     hideImageModal();
     showSuccessMessage();
   } catch (error) {
+    hideImageModal();
     showErrorMessage();
   }
 });

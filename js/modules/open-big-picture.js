@@ -6,6 +6,8 @@ const body = document.querySelector('body');
 
 const cancelButton = bigPicture.querySelector('.big-picture__cancel');
 
+let currentPictures = [];
+
 const hideBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -28,6 +30,8 @@ const showBigPicture = () => {
 };
 
 const openBigPicture = (picturesInfo) => {
+  currentPictures = picturesInfo;
+
   const pictures = document.querySelector('.pictures');
 
   pictures.addEventListener('click', (evt) => {
@@ -39,7 +43,7 @@ const openBigPicture = (picturesInfo) => {
 
     evt.preventDefault();
 
-    const openedPicture = picturesInfo.find((item) => item.id === +selectedThumbnail.dataset.id);
+    const openedPicture = currentPictures.find((item) => item.id === +selectedThumbnail.dataset.id);
 
     showBigPicture();
     getBigPictureDetails(openedPicture);
