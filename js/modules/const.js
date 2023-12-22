@@ -4,7 +4,7 @@ const DESCRIPTIONS = ['Chocolate cake', 'Im at sea', 'Funny cat', 'Beautiful sky
 
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 
-const TEXT_ERROR = {
+const ErrorText = {
   NOT_UNIQUE: 'Хэштеги не должны повторяться',
   NOT_VALID: 'Хэштег должен начинаться с знака # и состоять из букв или цифр',
   MAX_COUNT: 'Возможно максимум 5 хэштегов'
@@ -12,22 +12,22 @@ const TEXT_ERROR = {
 
 const URL = 'https://29.javascript.pages.academy/kekstagram';
 
-const ROUTE = {
+const Route = {
   GET_DATA: '/data',
   SEND_DATA: '/'
 };
 
-const METHOD = {
+const Method = {
   GET: 'GET',
   POST: 'POST'
 };
 
-const TEXT_SERVER_ERROR = {
+const ServerErrorText = {
   GET_DATA: 'не загрузилось',
   POST_DATA: 'не отправилось'
 };
 
-const EFFECTS = {
+const Effects = {
   NONE: {
     name: 'none',
     style: 'none',
@@ -78,7 +78,7 @@ const EFFECTS = {
   }
 };
 
-const FILTERS = {
+const Filters = {
   DEFAULT: 'filter-default',
   RANDOM: 'filter-random',
   DISCUSSED: 'filter-discussed',
@@ -93,6 +93,6 @@ const DEFAULT_SCALE = 100;
 const RANDOM_PICTURES_NUM = 10;
 const FILE_TYPES = ['jpeg', 'jpg', 'png'];
 
-export { NAMES, COMMENTS, DESCRIPTIONS, VALID_SYMBOLS, TEXT_ERROR, URL, ROUTE, METHOD,
-  TEXT_SERVER_ERROR, EFFECTS, FILTERS, LOADED_COMMENTS_NUM, HASHTAG_MAX_NUM, STEP_SCALE,
+export { NAMES, COMMENTS, DESCRIPTIONS, VALID_SYMBOLS, ErrorText, URL, Route, Method,
+  ServerErrorText, Effects, Filters, LOADED_COMMENTS_NUM, HASHTAG_MAX_NUM, STEP_SCALE,
   MIN_SCALE, MAX_SCALE, DEFAULT_SCALE, RANDOM_PICTURES_NUM, FILE_TYPES };

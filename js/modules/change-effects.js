@@ -1,4 +1,4 @@
-import { EFFECTS } from './const.js';
+import { Effects } from './const.js';
 
 const uploadModal = document.querySelector('.img-upload');
 
@@ -9,7 +9,7 @@ const effects = uploadModal.querySelector('.effects');
 const effectLevelValue = uploadModal.querySelector('.effect-level__value');
 const effectLevelSlider = uploadModal.querySelector('.effect-level__slider');
 
-const DEFAULT_EFFECT = EFFECTS.NONE;
+const DEFAULT_EFFECT = Effects.NONE;
 let selectedEffect = DEFAULT_EFFECT;
 
 noUiSlider.create(effectLevelSlider, {
@@ -53,7 +53,7 @@ const changeEffect = (evt) => {
     return;
   }
 
-  selectedEffect = EFFECTS[`${evt.target.value}`.toUpperCase()];
+  selectedEffect = Effects[`${evt.target.value}`.toUpperCase()];
   image.className = `effects__preview--${selectedEffect.name}`;
 
   updateSlider();

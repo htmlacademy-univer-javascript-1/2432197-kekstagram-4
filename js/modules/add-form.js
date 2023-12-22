@@ -1,4 +1,4 @@
-import { VALID_SYMBOLS, TEXT_ERROR, HASHTAG_MAX_NUM, FILE_TYPES } from './const.js';
+import { VALID_SYMBOLS, ErrorText, HASHTAG_MAX_NUM, FILE_TYPES } from './const.js';
 import { resetScale } from './scale-image.js';
 import { resetEffects } from './change-effects.js';
 
@@ -33,9 +33,9 @@ const isHashtagValid = (hashtags) => getSplitHashtags(hashtags).every((hashtag) 
 
 const hasReachedHashtagLimit = (hashtags) => getSplitHashtags(hashtags).length <= HASHTAG_MAX_NUM;
 
-pristine.addValidator(hashtagsField, areHashtagsUnique, TEXT_ERROR.NOT_UNIQUE, 1, true);
-pristine.addValidator(hashtagsField, isHashtagValid, TEXT_ERROR.NOT_VALID, 3, true);
-pristine.addValidator(hashtagsField, hasReachedHashtagLimit, TEXT_ERROR.MAX_COUNT, 2, true);
+pristine.addValidator(hashtagsField, areHashtagsUnique, ErrorText.NOT_UNIQUE, 1, true);
+pristine.addValidator(hashtagsField, isHashtagValid, ErrorText.NOT_VALID, 3, true);
+pristine.addValidator(hashtagsField, hasReachedHashtagLimit, ErrorText.MAX_COUNT, 2, true);
 
 const hideImageModal = () => {
   uploadOverlay.classList.add('hidden');
