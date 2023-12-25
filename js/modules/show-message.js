@@ -14,6 +14,7 @@ const hideErrorOnMouseClick = (evt) => {
 
   if (evt.target !== errorContainer) {
     hideErrorMessage();
+    document.removeEventListener('click', hideErrorOnMouseClick);
   }
 };
 
@@ -42,6 +43,7 @@ const successOnMouseClick = (evt) => {
 
   if (evt.target !== successContainer) {
     hideSuccessMessage();
+    document.removeEventListener('click', successOnMouseClick);
   }
 };
 
